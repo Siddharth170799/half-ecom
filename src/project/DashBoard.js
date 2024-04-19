@@ -3,7 +3,7 @@ import axios from "axios";
 import InitialData from "./InitialData";
 import FilteredData from "./FilteredData";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 const DashBoard = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -45,7 +45,7 @@ const DashBoard = () => {
     <>
     <div style={{textAlign:"center"}}>
     <h1>Shopify</h1></div>
-    <div style={{marginLeft:"1300px"}}><h4>Cart - {details.length}</h4></div>
+   <Link to={"/cart"}> <div style={{marginLeft:"1300px"}}><h4>Cart - {details.length}</h4></div></Link>
       <div style={{textAlign:"center"}}>
         <input
           type="text"

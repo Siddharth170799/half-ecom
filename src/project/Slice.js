@@ -32,9 +32,15 @@ const slice = createSlice({
         },
         addToCart:(state,action)=>{
             state.userDetails.push(action.payload)
+        },
+        removeFromCart:(state,action)=>{
+            state.userDetails=state.userDetails.filter((new2)=>{
+              return  new2.title !==action.payload
+            })
+
         }
     }
 })
 
-export const { adduser,addToCart } = slice.actions
+export const { adduser,addToCart,removeFromCart } = slice.actions
 export default slice.reducer

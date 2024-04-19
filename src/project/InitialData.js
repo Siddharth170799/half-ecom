@@ -23,18 +23,20 @@ const InitialData = ({key1}) => {
                         <div className="card">
                             <img src={item.image} alt={item.title} className="product-image" style={{height:"300px"}} />
                             <div className="product-details">
-                                <h2>{item.title}</h2>
+                                <h2 style={{textAlign:"center"}}>{item.title.slice(0,40)}</h2>
+                                <div className="price" style={{textAlign:"center",color:"black"}}><h4>${item.price}</h4></div>
                                 <p>{item.description.slice(0,100)}</p>
-                                <span className="price">${item.price}</span>
-                                <button className="btn" onClick={()=>{
+                                
+                              <div style={{textAlign:"center"}}> <button style={{backgroundColor:"green"}} className="btn" onClick={()=>{
                                     let obj={
                                         title:item.title,
                                         description:item.description,
-                                        img:item.img
+                                        img:item.image,
+                                        price:item.price
                                     }
                                     dispatch(addToCart(obj))
                                 }
-                                } >Add to Cart</button>
+                                } >Add to Cart</button></div> 
                             </div>
                         </div>
                     </div>
