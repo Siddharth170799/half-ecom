@@ -4,11 +4,13 @@ import InitialData from "./InitialData";
 import FilteredData from "./FilteredData";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 const DashBoard = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState("");
   const [count,setCount]=useState(0)
+  const [newstate,setNewState]=useState(true)
   const details=useSelector((state)=>state.New.userDetails)
   const api = async () => {
     const rawdata = await axios.get("https://fakestoreapi.com/products");
@@ -19,6 +21,18 @@ const DashBoard = () => {
   useEffect(() => {
     api();
   }, []);
+
+  // const api2 = async () => {
+  //   const rawdata = await axios.get("https://freetestapi.com/api/v1/mobiles");
+  //   console.log(rawdata);
+  //   setData(rawdata.data);
+  // };
+  // useEffect(()=>{
+  //   api2()
+  // },[newstate])
+  // console.log()
+
+
   console.log(data);
   useEffect(() => {
     let filteredResult = data.filter((item) =>
@@ -43,29 +57,26 @@ const DashBoard = () => {
 
   return (
     <>
-    <div style={{textAlign:"center"}}>
-    <h1>Shopify</h1></div>
-   <Link to={"/cart"}> <div style={{marginLeft:"1300px"}}><h4>Cart - {details.length}</h4></div></Link>
+    <Navbar key7={input} key8={setInput} />
+   
+   
       <div style={{textAlign:"center"}}>
-        <input
-          type="text"
-          placeholder="Search"
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-        />
+      
       </div>
-      <div style={{ marginLeft: "1150px" }}>
-        <button onClick={sortByPriceLowToHigh}>Price Low to High</button>
+      <div style={{ marginLeft: "1150px"}}>
+        <button onClick={sortByPriceLowToHigh} style={{marginTop:"30px",margin:"15px"}}>Price Low to High</button>
         <button onClick={sortByPriceHighToLow}>Price High To Low</button>
       </div>
+      <div><button onClick={()=>{
+        setNewState(!newstate)
+      }}>Click</button></div>
 
       {filteredData.length > 0 ? (
         <FilteredData key2={filteredData} />
       ) : (
         <InitialData key1={data}  />
       )}
+      {/* <Navbar key7={input} key8={setInput} key9={details}/> */}
     </>
   );
 };

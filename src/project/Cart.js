@@ -1,16 +1,21 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from './Slice'
+import { current } from '@reduxjs/toolkit'
+import Navbar from './Navbar'
 
 
 const Cart = () => {
     const dispatch=useDispatch()
     const details=useSelector((state)=>state.New.userDetails)
-
+ const price2= details.reduce((acc,currentValue)=>{
+    return acc+currentValue.price
+  },0)
     
   return (
     <div>
-
+      <Navbar/>
+<div style={{textAlign:"center"}}><h2>Total Price Rs.{price2}</h2></div>
 
         {details.length > 0 ?     <div className='row'>
       {details.map((item,index)=>{

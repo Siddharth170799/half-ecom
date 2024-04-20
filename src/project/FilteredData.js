@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addToCart } from './Slice'
+import { Link } from 'react-router-dom'
 
 const FilteredData = ({key2}) => {
     const dispatch=useDispatch()
@@ -16,7 +17,8 @@ const FilteredData = ({key2}) => {
                             <div className="product-details">
                                 <h2 style={{textAlign:"center"}}>{item.title}</h2>
                                 <p>{item.description.slice(0,100)}</p>
-                                <div style={{textAlign:"center",color:"black"}} className="price"><h4>${item.price}</h4></div>
+                                <Link to={`/dashboard/${item.id}`}> <p>Click To View the Product</p></Link>
+                                <div style={{textAlign:"center",color:"black"}} className="price"><h4>{item?.price}</h4></div>
                               <div style={{textAlign:"center",backgroundColor:"blue"}}>  <button className="btn" onClick={()=>{
                                 let obj={
                                     title:item.title,
